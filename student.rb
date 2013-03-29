@@ -1,3 +1,4 @@
+
 require 'rubygems'
 require 'yaml'
 
@@ -7,52 +8,75 @@ class Person
   attr_accessor :github_user
   attr_accessor :twitter
   attr_accessor :fun_fact
+  attr_accessor :favorite_food
   attr_accessor :age
+
+      def initialize
+        self.quetionaire
+      end
+
+      def self.create_person(type)
+          case type
+           when /[Ii]nstructor/
+              Instructor.new
+           when /[Ss]tudent/
+              Student.new
+           else
+              "Sorry, this form is for Students and Instructors only!"
+          end
+      end
+
+        def quetionaire
+            print "What is your name? "
+            self.name = gets.strip.chomp
+            print "How old are you #{self.name}? "
+            self.age = gets.strip.chomp
+            print "What is your email? "
+            self.email = gets.strip.chomp
+            print "What is your github user ID? "
+            self.github_user = gets.strip.chomp
+            print "What is your twitter account? "
+            self.twitter = gets.strip.chomp
+            print "Tell us a fun fact about you: "
+            self.fun_fact = gets.strip.chomp
+            print "What is your favorite food? "
+            self.favorite_food = gets.strip.chomp
+        end
 end
+
 
 class Student < Person
-  attr_accessor :reason_for_joining
+  attr_accessor :fun_fact
+     def questionaire
+      super
+      "What is the reason you came to GA?"
+      self.fun_fact = gets.strip.chomp
+    end
 end
 
+
 class Instructor < Person
-  attr_accessor :type
+  
+    def questionaire
+      super
+      "Seeing that youre an Instructor\n We know youre only here for the MONEY! "
+    end
 end
 
 @directory = ""
 puts "Student Directory, v0.0.1 by Dan Garland"
 print "Enter Student or Instructor, q to save and quit: "
 
+
 while ((input = gets.strip.chomp) != 'q') do
 
-  person = nil
-  case input
-  when 'Student' 
-    person = Student.new
-    print "What is your name? "
-    person.name = gets.strip.chomp
-    print "How old are you #{person.name}? "
-    person.age = gets.strip.chomp
-    print "What is your email? "
-    person.email = gets.strip.chomp
-    print "What is your email? "
-    person.email = gets.strip.chomp
-    print "What is your twitter? "
-    person.twitter = gets.strip.chomp
-    print "What is your github account username? "
-    person.github_user = gets.strip.chomp
-    
-  when 'Instructor'
-    person = Instructor.new
-    print "What is your name? "
-    person.name = gets.strip.chomp
-    print "What is your email? "
-    person.email = gets.strip.chomp
-    print "What sort of instructor are you? "
-    person.type = gets.strip.chomp
-  end
-  
+somebody = Person.create_person(input)
+
+
+ # end   
+ 
   # Append this to our yaml file
-  @directory += person.to_yaml
+  @directory += somebody.to_yaml
   puts @directory
   
   print "Enter Student or Instructor, q to save and quit: "
