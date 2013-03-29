@@ -1,6 +1,7 @@
 
 require 'rubygems'
 require 'yaml'
+require 'pry'
 
 class Person
   attr_accessor :name
@@ -11,9 +12,11 @@ class Person
   attr_accessor :favorite_food
   attr_accessor :age
 
+@directory = []
       def initialize
         self.quetionaire
       end
+
 
       def self.create_person(type)
           case type
@@ -21,11 +24,16 @@ class Person
               Instructor.new
            when /[Ss]tudent/
               Student.new
+            when /[Ll]/
+            #     load_students
+            # def load_students
+          @directory << YAML.load_documents(File.open('student_directory.yml'))
+      # end
            else
               "Sorry, this form is for Students and Instructors only!"
           end
       end
-
+# binding.pry
         def quetionaire
             print "What is your name? "
             self.name = gets.strip.chomp
@@ -43,7 +51,6 @@ class Person
             self.favorite_food = gets.strip.chomp
         end
 end
-
 
 class Student < Person
   attr_accessor :fun_fact
@@ -63,9 +70,17 @@ class Instructor < Person
     end
 end
 
-@directory = ""
-puts "Student Directory, v0.0.1 by Dan Garland"
-print "Enter Student or Instructor, q to save and quit: "
+# class Load
+  
+#     def load_students
+#       @directory += YAML.load_documents(File.open('student_directory.yml'))
+#     end
+# end
+
+@directory = []
+puts "Student Directory, v0.0.3 by Dan Garland & Ed"
+print "Enter Student or Instructor" 
+print "Enter l to load previos students or q to save and quit: "
 
 
 while ((input = gets.strip.chomp) != 'q') do
@@ -76,11 +91,26 @@ somebody = Person.create_person(input)
  # end   
  
   # Append this to our yaml file
-  @directory += somebody.to_yaml
+  @directory << somebody.to_yaml
   puts @directory
   
-  print "Enter Student or Instructor, q to save and quit: "
+  puts "Student Directory, v0.0.3 by Dan Garland & Ed"
+  print "Enter Student or Instructor" 
+  print "Enter l to load previos students or q to save and quit: "
 end
 
+# while input = gets.strip.chomp == 'l' do
+#   # File.open('student_directory.yml') { |f| f.read@directory) } 
+#   @directory += YAML.load_documents(File.open('student_directory.yml'))
+
+# end
+# binding.pry
 # Open a student_directory.yml YAML file and write it out on one line
-File.open('student_directory.yml', 'a') { |f| f.write(@directory) } 
+# File.open('student_directory.yml', 'a') { |f| f.write(@directory) } 
+# Save people to a YAML file
+File.open('student_directory.yml', 'a') { |f|
+  @directory.compact.each do |person|
+    f.write(person.to_yaml)
+
+  end   
+} 
