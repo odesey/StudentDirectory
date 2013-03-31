@@ -14,7 +14,7 @@ class Person
 
 @directory = []
       def initialize
-        self.quetionaire
+        self.questionaire
       end
 
 
@@ -34,7 +34,7 @@ class Person
           end
       end
 # binding.pry
-        def quetionaire
+        def questionaire
             print "What is your name? "
             self.name = gets.strip.chomp
             print "How old are you #{self.name}? "
@@ -49,6 +49,7 @@ class Person
             self.fun_fact = gets.strip.chomp
             print "What is your favorite food? "
             self.favorite_food = gets.strip.chomp
+
         end
 end
 
@@ -56,7 +57,7 @@ class Student < Person
   attr_accessor :fun_fact
      def questionaire
       super
-      "What is the reason you came to GA?"
+      puts "What is the reason you came to GA?"
       self.fun_fact = gets.strip.chomp
     end
 end
@@ -66,7 +67,7 @@ class Instructor < Person
   
     def questionaire
       super
-      "Seeing that youre an Instructor\n We know youre only here for the MONEY! "
+      return "Seeing that youre an Instructor\n We know youre only here for the MONEY! "
     end
 end
 
