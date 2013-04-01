@@ -92,7 +92,7 @@ somebody = Person.create_person(input)
  # end   
  
   # Append this to our yaml file
-  @directory << somebody.to_yaml
+  @directory << person.to_yaml
   puts @directory
   
   puts "Student Directory, v0.0.3 by Dan Garland & Ed"
