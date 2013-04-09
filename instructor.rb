@@ -1,23 +1,23 @@
-class Student < Person
-  attr_accessor :reason_for_joining
+class Instructor < Person
+  attr_accessor :iq
 
   # Prompt the user for questions, including those extra quetions pertaining to 
-  # Student objects
+  # Instructor objects
   #
   def ask_questions
     super
-    print "What was your reason for joining? "
-    self.reason_for_joining = gets.strip.chomp
+    print "What is your IQ? "
+    self.iq = gets.strip.chomp
   end
 
   # Provides a String that represents this Student, try me with puts!
-  # 
+  #
   def to_s
     "ID: #{self.id}
     Type: #{self.class}
     Name: #{self.name}
     Email: #{self.email}
-    Reason For Joining: #{self.reason_for_joining}"
+    IQ: #{self.iq}"
   end
 
   # TODO - Persists this Instructor object to the database
@@ -25,7 +25,6 @@ class Student < Person
   def save
     # Build a String of SQL, that will insert all the attributes into the persons table
 
-    # Execute the SQL on the @@db object
+    # Execute the SQL on the @@db object    
   end
-
 end
