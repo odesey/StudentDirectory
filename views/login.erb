@@ -1,0 +1,13 @@
+<title>Login Page</title>
+
+<h1> Please Login</h1>
+<%= flash[:notice] %>
+<!-- <p> Please enter the password to continue...</p> -->
+
+	<form action="/index" method="POST">
+		 <label for="password">
+		   Password:
+		 </label>
+		 <input type="password" name="password" />
+		 <input type="submit" />
+	</form> 

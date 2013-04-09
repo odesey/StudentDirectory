@@ -1,0 +1,21 @@
+<!-- <html>
+<head> this will now be displayed through the layout.erb file
+	<title>Hello</title>
+	<link rel="stylesheet" type="text/css" href="/css/main.css" />
+</head>
+
+<body> -->
+
+<link href = "/main.css" type = "text/css" rel = "stylesheet" />
+
+<img src = "http://3.bp.blogspot.com/-ug5cOMFT5pw/UMIlgcqRDUI/AAAAAAAAHeI/eUxCAcd-JbE/s1600/teacher.gif" width = "200" height = "300"/>
+<p></p>
+<img src = "http://school.discoveryeducation.com/clipart/images/student2.gif" width = "200" height = "400" />
+<p> <%= flash[:notice] %> </p>
+<form action='/result' method='POST'>
+	<label for="search">
+	Student/Instructor
+	</label>
+	<input type="text" name="id" />
+	<input type ="submit" />
+</form>
